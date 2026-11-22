@@ -68,12 +68,18 @@ bun run dev            # gramstax start — Telegram bot (polling)
 
 The bot drives `gemini.google.com` in a persistent Moli browser profile.
 Google needs a login once; the bot never logs in itself and never asks
-for a password.
+for a password. The login is done with Moli + JS directly — a driver
+script fills the Google sign-in form in Moli (no chrome://inspect,
+no DevTools screencast). Run it on a machine where you can type the
+credentials into the terminal (your laptop); the password is masked,
+never logged, and never stored — only the logged-in browser session
+stays in the profile dir.
 
 ```bash
-~/.local/bin/moli serve --layout -P ./moli-profile --http-proxy "$HTTP_PROXY"
-# Open the browser Moli serves, go to gemini.google.com, log in once.
-# Stop Moli (Ctrl+C) — the session cookies stay in ./moli-profile.
+bun run login:moli   # prompts for Google email + password, handles 2FA
+# The script verifies the login on gemini.google.com, then stops Moli.
+# Zip the profile dir and place it at ./moli-profile on the bot host:
+zip -r moli-profile.zip moli-profile
 bun run dev   # the bot reuses that logged-in profile from now on
 ```
 

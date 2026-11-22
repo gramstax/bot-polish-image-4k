@@ -26,6 +26,7 @@
     "test:e2e:check": "bun run scripts/check-e2e-mirror.ts --path . && bun run scripts/check-e2e-handlers.ts --path .",
     "typecheck": "tsc --noEmit",
     "verify:moli": "bun run scripts/verify-moli-cdp.ts",
+    "login:moli": "bun run scripts/moli-login.mjs",
     "mock:polish": "bun run scripts/mock-polish-run.ts"
   },
   "type": "module",

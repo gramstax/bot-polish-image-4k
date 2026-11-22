@@ -144,9 +144,16 @@
 - **Login handling**: the worker detects the Gemini login wall
   (Sign in button / login URL) and fails the job HONESTLY
   ("Gemini login needed — ask the owner to log in once") instead of
-  hanging or faking a result. NEVER attempt to log in with a
-  password. One-time manual login: start moli serve with the
-  profile dir, log in once in that browser session (see README).
+  hanging or faking a result. The WORKER never logs in and never
+  touches a password. One-time login is done by the OWNER with Moli
+  + JS directly (Damar, 2026-11-22 — NOT via chrome://inspect):
+  `scripts/moli-login.mjs` (`bun run login:moli`) drives the Google
+  sign-in form in Moli via Playwright/CDP; the owner types the
+  email/password in the terminal (masked, never logged/stored) and
+  completes 2FA (phone approval or TOTP code); the script verifies
+  the login on gemini.google.com, then stops Moli so cookies flush
+  to the profile dir. Zip that profile dir and place it at
+  `./moli-profile` on the bot host (see README).
 - **Mock mode**: `POLISH_MOCK_AI=1` — the worker returns a
   deterministic copy of the input image as the "polished" result.
   All e2e tests run in mock mode. Mock is ONLY on when the env var
@@ -241,7 +248,9 @@ the Moli profile): run the bot, send a photo, watch the ACK edits
 
 Git: `gh` CLI (logged in as `damartripamungkas`), HTTPS via the
 `gh` credential helper — SSH push FAILS (the VM key is only a
-Deploy Key for `inkred-content-factory`). Repo (planned, NOT
-created yet): `gramstax/bot-polish-image-4k` (PUBLIC). Topics:
-telegram-bot, gramstax, typescript, bun, gemini, image-upscale,
-4k, photo-enhancement, chatbot.
+Deploy Key for `inkred-content-factory`). Repo:
+`gramstax/bot-polish-image-4k` (PUBLIC, created + pushed
+2026-11-22, HEAD `ea9d5db`). Topics: ai-assistant, bun, chatbot,
+gemini, gramstax, image-upscaling, moli, photo-restoration,
+telegram-bot, typescript. Bot live since 2026-11-22 ~15:17 WIB as
+@ke2_ai_bot (youtube-bot token, for testing).
