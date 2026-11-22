@@ -66,10 +66,15 @@ bun run dev            # gramstax start — Telegram bot (polling)
 
 ## One-time Google login
 
+Status: the login driver is ready and tested
+(`scripts/moli-login.mjs`, `bun run login:moli`). The bot host does not
+have a logged-in profile yet — the step below still needs to be run
+once by the owner.
+
 The bot drives `gemini.google.com` in a persistent Moli browser profile.
 Google needs a login once; the bot never logs in itself and never asks
-for a password. The login is done with Moli + JS directly — a driver
-script fills the Google sign-in form in Moli (no chrome://inspect,
+for a password. The login is done with Moli + JS directly — the driver
+fills the Google sign-in form in Moli (no chrome://inspect,
 no DevTools screencast). Run it on a machine where you can type the
 credentials into the terminal (your laptop); the password is masked,
 never logged, and never stored — only the logged-in browser session

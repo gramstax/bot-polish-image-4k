@@ -253,4 +253,6 @@ Deploy Key for `inkred-content-factory`). Repo:
 2026-11-22, HEAD `ea9d5db`). Topics: ai-assistant, bun, chatbot,
 gemini, gramstax, image-upscaling, moli, photo-restoration,
 telegram-bot, typescript. Bot live since 2026-11-22 ~15:17 WIB as
-@ke2_ai_bot (youtube-bot token, for testing).
+@ke2_ai_bot (youtube-bot token, for testing); VM restart ~16:37 WIB
+killed it, restarted 16:50 WIB, then STOPPED 2026-11-22 ~17:08 WIB on
+Damar's order. Restart with `bun run start` when needed.
