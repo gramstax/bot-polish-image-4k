@@ -1,0 +1,33 @@
+{
+  "dependencies": {
+    "@gramstax/lmdb": "6.1.0",
+    "grammy": "1.46.0",
+    "gramstax": "6.1.0",
+    "playwright-core": "1.65.0",
+    "sharp": "0.35.5"
+  },
+  "description": "Polish your photos to 4K with AI on Telegram \u2014 send a photo, get a polished image back, built with Gramstax + TypeScript + Bun",
+  "devDependencies": {
+    "@types/bun": "1.4.5"
+  },
+  "license": "MIT",
+  "name": "bot-polish-image-4k",
+  "peerDependencies": {
+    "typescript": "7.0.2"
+  },
+  "private": true,
+  "scripts": {
+    "build:gramstax": "gramstax build",
+    "dev": "gramstax start --watch",
+    "start": "gramstax start",
+    "test": "bun test test/",
+    "test:all": "bun run test:e2e:check && bun test test/ e2e/",
+    "test:e2e": "bun test e2e/",
+    "test:e2e:check": "bun run scripts/check-e2e-mirror.ts --path . && bun run scripts/check-e2e-handlers.ts --path .",
+    "typecheck": "tsc --noEmit",
+    "verify:moli": "bun run scripts/verify-moli-cdp.ts",
+    "mock:polish": "bun run scripts/mock-polish-run.ts"
+  },
+  "type": "module",
+  "version": "0.1.0"
+}
